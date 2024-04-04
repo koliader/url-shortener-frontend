@@ -1,0 +1,7 @@
+.main {
+  @apply w-full flex items-center px-6 border-b-1 justify-between;
+  height: 75px;
+  .logo {
+    @apply flex gap-1 items-center text-2xl font-extrabold cursor-pointer transition-colors duration-300 hover:text-primary;
+  }
+}
