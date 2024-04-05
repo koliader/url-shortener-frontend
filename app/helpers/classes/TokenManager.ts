@@ -7,13 +7,14 @@ export class TokenManager {
   private decodedToken: IDecodedToken;
   constructor() {
     this.token = parseCookies().token;
-    this.decodedToken = jwt.decode(this.token);
+    this.decodedToken = jwt.decode(this.token) as IDecodedToken;
   }
   getTokenData(): ITokenDto {
     return { decodedToken: this.decodedToken, token: this.token };
   }
   checkTokenIsExpired(): boolean {
     const currentTime = Math.floor(Date.now() / 1000);
+    console.log(this.decodedToken);
     const parsedDate = new Date(this.decodedToken.expiredAt);
     const date = parsedDate.getTime();
     if (this.decodedToken && date < currentTime) {

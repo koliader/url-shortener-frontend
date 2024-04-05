@@ -1,11 +1,10 @@
-import Login from "@/app/components/screens/Auth/Login/Login";
+import Register from "@/app/components/screens/Auth/Register/Register";
 import { TokenManager } from "@/app/helpers/classes/TokenManager";
 import { NextPage } from "next";
-import { NextRouter } from "next/router";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const login: NextPage = () => {
+const register: NextPage = () => {
   const [isAuth, setIsAuth] = useState<boolean>();
   const router: NextRouter = useRouter();
   const tokenDto = new TokenManager().getTokenData();
@@ -15,6 +14,6 @@ const login: NextPage = () => {
       router.push("/");
     }
   }, []);
-  return <>{!isAuth && <Login />}</>;
+  return <>{!isAuth && <Register />}</>;
 };
-export default login;
+export default register;

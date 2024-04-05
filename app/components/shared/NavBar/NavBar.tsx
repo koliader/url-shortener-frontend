@@ -1,12 +1,16 @@
-import { FC, useEffect } from "react";
+import { FC, Fragment, useEffect } from "react";
 import style from "./style.module.scss";
 import { FaLink } from "react-icons/fa";
 import AuthButtons from "./AuthButtons/AuthButtons";
 import { TokenManager } from "@/app/helpers/classes/TokenManager";
-import { notification } from "antd";
+import { Menu, notification } from "antd";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
 import { Informer } from "@/app/helpers/classes/Informer";
+import { MenuItem } from "@mui/material";
+import { BiPlus, BiSolidDownArrow } from "react-icons/bi";
+import PopoverComponent from "./PopoverComponent/PopoverComponent";
+import jwt from "jsonwebtoken";
 
 const NavBar: FC = () => {
   const router: NextRouter = useRouter();
@@ -26,16 +30,21 @@ const NavBar: FC = () => {
     if (router.asPath === "/") {
       router.reload();
     } else {
-      router.push("/");
     }
   };
   return (
     <nav className={style.main}>
-      <div className={style.logo} onClick={logoClick}>
+      <div className={style.logo} onClick={() => router.push("/")}>
         <FaLink size={"1.8rem"} />
         <span className={style.logoText}>Url shortener</span>
       </div>
-      <AuthButtons />
+      {tokenDto.token ? (
+        <div className="flex gap-10">
+          <PopoverComponent />
+        </div>
+      ) : (
+        <AuthButtons />
+      )}
     </nav>
   );
 };

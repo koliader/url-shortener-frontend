@@ -1,9 +1,12 @@
+import { IErrorField } from "@/app/assets/types/error";
 import { notification } from "antd";
+import { AxiosError } from "axios";
 
 export class Informer {
-  informsError(error: string) {
+  informsError(err: AxiosError<IErrorField>) {
+    console.log(err);
     notification.error({
-      message: error,
+      message: err.response?.data?.error,
       duration: 4,
     });
   }

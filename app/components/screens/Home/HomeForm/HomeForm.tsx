@@ -10,6 +10,8 @@ import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
 import { FaRegCopy } from "react-icons/fa";
+import { AxiosError } from "axios";
+import { IErrorField } from "@/app/assets/types/error";
 
 const HomeForm: FC = () => {
   const {
@@ -38,14 +40,13 @@ const HomeForm: FC = () => {
   const submit: SubmitHandler<IHomeFormValues> = async (
     values: IHomeFormValues
   ) => {
-    console.log(values.url);
     try {
       if (tokenDto.token) {
         await mutation.mutateAsync(values);
         setIsDisabled(true);
       }
-    } catch (error) {
-      informer.informsError(error.response?.data?.error);
+    } catch (error: any) {
+      informer.informsError(error);
     } finally {
       setIsDisabled(false);
     }
