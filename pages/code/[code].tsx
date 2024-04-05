@@ -1,10 +1,10 @@
-import { IUrlRes } from "@/app/components/screens/Home/HomeForm/types";
 import axios from "@/app/helpers/axios";
 import { GetServerSideProps, NextPage } from "next";
 import { NextRouter } from "next/router";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ErrorPage from "next/error";
+import { IUrl } from "@/app/assets/types/url";
 
 export interface IUrlPageServerSideProps {
   url: string | null;
@@ -25,7 +25,8 @@ export const getServerSideProps: GetServerSideProps<
   IUrlPageServerSideProps
 > = async (ctx) => {
   try {
-    const url = await axios.get<IUrlRes>(`/urls/${ctx.params!.code}`);
+    const url = await axios.get<IUrl>(`/urls/${ctx.params!.code}`);
+    await axios.put(`/urls/${ctx.params!.code}`);
     return { props: { url: url.data.url, notFound: false } };
   } catch (error: any) {
     console.log(error.response.status);

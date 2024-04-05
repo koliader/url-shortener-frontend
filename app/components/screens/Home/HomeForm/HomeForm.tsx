@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { IUrlRes, IHomeFormValues } from "./types";
+import { IHomeFormValues } from "./types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./style.module.scss";
 import { TokenManager } from "@/app/helpers/classes/TokenManager";
@@ -11,6 +11,8 @@ import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
 import { FaRegCopy } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
+import { IUrl } from "@/app/assets/types/url";
+import { urlBase } from "@/app/helpers/variables";
 
 const HomeForm: FC = () => {
   const {
@@ -25,12 +27,11 @@ const HomeForm: FC = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const tokenDto = new TokenManager().getTokenData();
   const informer = new Informer();
-  const router: NextRouter = useRouter();
-  const urlBase: string = "http://localhost:3000/code/";
+
   const guestMutation = useMutation(
     "createGuestUrl",
     async (values: IHomeFormValues) =>
-      await axios.post<IUrlRes>("/urls/guest", { url: values.url }),
+      await axios.post<IUrl>("/urls/guest", { url: values.url }),
     {
       onSuccess: (data) => {
         setUrl(`${urlBase}${data.data.code}`);
@@ -40,7 +41,7 @@ const HomeForm: FC = () => {
   const mutation = useMutation(
     "createUrl",
     async (values: IHomeFormValues) =>
-      await axios.post<IUrlRes>(
+      await axios.post<IUrl>(
         "/urls",
         { url: values.url },
         {

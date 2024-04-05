@@ -14,7 +14,6 @@ export class TokenManager {
   }
   checkTokenIsExpired(): boolean {
     const currentTime = Math.floor(Date.now() / 1000);
-    console.log(this.decodedToken);
     const parsedDate = new Date(this.decodedToken.expiredAt);
     const date = parsedDate.getTime();
     if (this.decodedToken && date < currentTime) {
