@@ -6,7 +6,8 @@ export class Informer {
   informsError(err: AxiosError<IErrorField>) {
     console.log(err);
     notification.error({
-      message: err.response?.data?.error,
+      message: "Error",
+      description: err.response?.data?.error,
       duration: 4,
     });
   }
@@ -17,9 +18,10 @@ export class Informer {
       duration: 4,
     });
   }
-  informAfterCopy() {
+  informSuccess(description: string) {
     notification.success({
-      message: "Url successfully copied",
+      message: "Success!",
+      description,
       duration: 4,
     });
   }

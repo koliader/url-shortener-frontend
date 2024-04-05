@@ -12,24 +12,42 @@ import { NextRouter } from "next/router";
 import { FaRegCopy } from "react-icons/fa";
 import { AxiosError } from "axios";
 import { IErrorField } from "@/app/assets/types/error";
+import { MdCancelPresentation } from "react-icons/md";
 
 const HomeForm: FC = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<IHomeFormValues>({
     mode: "onBlur",
   });
-  const [url, setUrl] = useState<string>();
+  const [url, setUrl] = useState<string | null>(null);
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
   const tokenDto = new TokenManager().getTokenData();
   const informer = new Informer();
   const router: NextRouter = useRouter();
-  const mutation = useMutation(
+  const guestMutation = useMutation(
     "createGuestUrl",
     async (values: IHomeFormValues) =>
       await axios.post<IUrlRes>("/urls/guest", { url: values.url }),
+    {
+      onSuccess: (data) => {
+        setUrl(`http://localhost:3000${router.pathname}${data.data.code}`);
+      },
+    }
+  );
+  const mutation = useMutation(
+    "createUrl",
+    async (values: IHomeFormValues) =>
+      await axios.post<IUrlRes>(
+        "/urls",
+        { url: values.url },
+        {
+          headers: { Authorization: `Bearer ${tokenDto.token}` },
+        }
+      ),
     {
       onSuccess: (data) => {
         setUrl(`http://localhost:3000${router.pathname}${data.data.code}`);
@@ -43,8 +61,10 @@ const HomeForm: FC = () => {
     try {
       if (tokenDto.token) {
         await mutation.mutateAsync(values);
-        setIsDisabled(true);
+      } else {
+        await guestMutation.mutateAsync(values);
       }
+      setIsDisabled(true);
     } catch (error: any) {
       informer.informsError(error);
     } finally {
@@ -53,7 +73,12 @@ const HomeForm: FC = () => {
   };
   const copyUrl = () => {
     navigator.clipboard.writeText(url!);
-    informer.informAfterCopy();
+    informer.informSuccess("Url successfully copied");
+  };
+  const clear = () => {
+    setUrl(null);
+    reset();
+    informer.informSuccess("Url cleared!");
   };
   return (
     <form className={style.form} onSubmit={handleSubmit(submit)}>
@@ -86,11 +111,18 @@ const HomeForm: FC = () => {
       {url && (
         <div className=" flex items-center justify-between">
           <span>{url}</span>
-          <FaRegCopy
-            size={"1.5rem"}
-            className={style.copyIcon}
-            onClick={copyUrl}
-          />
+          <div className="flex gap-1">
+            <FaRegCopy
+              size={"1.5rem"}
+              className={style.copyIcon}
+              onClick={copyUrl}
+            />
+            <MdCancelPresentation
+              size={"1.5rem"}
+              className={style.copyIcon}
+              onClick={clear}
+            />
+          </div>
         </div>
       )}
     </form>

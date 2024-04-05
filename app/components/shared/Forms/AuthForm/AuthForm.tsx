@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import style from "./style.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IAuthFormProps, ILoginFormValues } from "./types";
@@ -105,11 +105,11 @@ const AuthForm: FC<IAuthFormProps> = ({ typeOfForm }) => {
             onClick={() => setIsShowing(!isShowing)}
           >
             {isShowing ? (
-              <Tooltip title="Скрыть пароль">
+              <Tooltip title="Hide password">
                 <IoEyeOffOutline size={"1.5rem"} />
               </Tooltip>
             ) : (
-              <Tooltip title="Показать пароль">
+              <Tooltip title="Show password">
                 <IoEyeOutline size={"1.5rem"} />
               </Tooltip>
             )}
@@ -123,11 +123,16 @@ const AuthForm: FC<IAuthFormProps> = ({ typeOfForm }) => {
       <button className={style.button} disabled={isDisabled}>
         {isDisabled ? (
           <div className="flex items-center justify-center gap-2">
-            Login...
+            {typeOfForm.slice(0, 1).toUpperCase() +
+              typeOfForm.slice(1, typeOfForm.length)}
+            ...
             <CircularProgress size={"1.5rem"} style={{ color: "#6f42c180" }} />
           </div>
         ) : (
-          <>Login</>
+          <>
+            {typeOfForm.slice(0, 1).toUpperCase() +
+              typeOfForm.slice(1, typeOfForm.length)}
+          </>
         )}
       </button>
     </form>
