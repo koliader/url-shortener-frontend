@@ -13,6 +13,7 @@ import { FaRegCopy } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
 import { IUrl } from "@/app/assets/types/url";
 import { urlBase } from "@/app/helpers/variables";
+import Link from "next/link";
 
 const HomeForm: FC = () => {
   const {
@@ -110,7 +111,13 @@ const HomeForm: FC = () => {
       </button>
       {url && (
         <div className=" flex items-center justify-between">
-          <span>{url}</span>
+          <Link
+            href={url}
+            className="text-primary hover:underline"
+            target="_blank"
+          >
+            {url}
+          </Link>
           <div className="flex gap-1">
             <FaRegCopy
               size={"1.5rem"}
