@@ -1,0 +1,6 @@
+.main {
+  @apply flex mt-3 flex-col items-center;
+  .title {
+    @apply text-2xl font-semibold;
+  }
+}

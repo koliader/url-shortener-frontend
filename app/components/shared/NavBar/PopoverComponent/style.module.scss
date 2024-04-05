@@ -1,0 +1,24 @@
+.avatar {
+  @apply w-10 h-10 text-lg font-semibold;
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.popover {
+  @apply w-32 h-20 bg-white absolute mt-11 border-1 flex items-center flex-col rounded-sm transition-all duration-300 pt-2 gap-1;
+  &::after {
+    content: "";
+    @apply absolute h-2 w-2 z-0 rotate-45 mix-blend-lighten bg-white border opacity-100;
+    top: -4px;
+  }
+  .logOutButton {
+    @apply px-4 py-1 border-1 rounded-sm hover:border-primary hover:text-primary transition-colors duration-300 ease-in-out;
+  }
+  .link {
+    @apply hover:text-primary transition-colors duration-300;
+  }
+}
+.popoverHidden {
+  @apply opacity-0 transition-all duration-300;
+  transform: translateY(-6px);
+}

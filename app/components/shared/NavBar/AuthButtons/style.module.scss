@@ -1,0 +1,9 @@
+.auth {
+  @apply flex gap-3;
+  .login {
+    @apply px-5 py-1 border-1 rounded-sm hover:bg-zinc-50 transition-colors duration-300;
+  }
+  .register {
+    @apply px-5 py-1 rounded-sm  transition-colors duration-300 bg-primary text-white hover:bg-opacity-90;
+  }
+}
