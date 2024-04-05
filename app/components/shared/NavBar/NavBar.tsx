@@ -38,13 +38,7 @@ const NavBar: FC = () => {
         <FaLink size={"1.8rem"} />
         <span className={style.logoText}>Url shortener</span>
       </div>
-      {tokenDto.token ? (
-        <div className="flex gap-10">
-          <PopoverComponent />
-        </div>
-      ) : (
-        <AuthButtons />
-      )}
+      {tokenDto.token ? <PopoverComponent /> : <AuthButtons />}
     </nav>
   );
 };

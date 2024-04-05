@@ -10,9 +10,7 @@ import { useMutation } from "react-query";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
 import { FaRegCopy } from "react-icons/fa";
-import { AxiosError } from "axios";
-import { IErrorField } from "@/app/assets/types/error";
-import { MdCancelPresentation } from "react-icons/md";
+import { MdOutlineCancel } from "react-icons/md";
 
 const HomeForm: FC = () => {
   const {
@@ -28,13 +26,14 @@ const HomeForm: FC = () => {
   const tokenDto = new TokenManager().getTokenData();
   const informer = new Informer();
   const router: NextRouter = useRouter();
+  const urlBase: string = "http://localhost:3000/code/";
   const guestMutation = useMutation(
     "createGuestUrl",
     async (values: IHomeFormValues) =>
       await axios.post<IUrlRes>("/urls/guest", { url: values.url }),
     {
       onSuccess: (data) => {
-        setUrl(`http://localhost:3000${router.pathname}${data.data.code}`);
+        setUrl(`${urlBase}${data.data.code}`);
       },
     }
   );
@@ -50,7 +49,7 @@ const HomeForm: FC = () => {
       ),
     {
       onSuccess: (data) => {
-        setUrl(`http://localhost:3000${router.pathname}${data.data.code}`);
+        setUrl(`${urlBase}${data.data.code}`);
       },
     }
   );
@@ -117,8 +116,8 @@ const HomeForm: FC = () => {
               className={style.copyIcon}
               onClick={copyUrl}
             />
-            <MdCancelPresentation
-              size={"1.5rem"}
+            <MdOutlineCancel
+              size={"1.5em"}
               className={style.copyIcon}
               onClick={clear}
             />
