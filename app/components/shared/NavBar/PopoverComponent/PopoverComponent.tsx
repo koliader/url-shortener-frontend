@@ -24,7 +24,7 @@ const PopoverComponent: FC = () => {
   const { data } = useQuery(
     "get user for navbar",
     async () =>
-      await axios.get<IUser>(`/users/${tokenDto.decodedToken?.email}`, {
+      await axios.get<IUser>(`/users/${tokenDto.decodedToken?.username}`, {
         headers: { Authorization: `Bearer ${tokenDto.token}` },
       }),
     {
@@ -66,7 +66,7 @@ const PopoverComponent: FC = () => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex justify-center">
       <div
         ref={toggleRef}
         className="flex items-center gap-2 cursor-pointer"
