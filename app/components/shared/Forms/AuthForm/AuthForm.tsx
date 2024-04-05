@@ -10,6 +10,7 @@ import { CircularProgress } from "@mui/material";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
 import { setCookie } from "nookies";
+import Link from "next/link";
 
 const AuthForm: FC<IAuthFormProps> = ({ typeOfForm }) => {
   const {
@@ -45,10 +46,17 @@ const AuthForm: FC<IAuthFormProps> = ({ typeOfForm }) => {
   };
   return (
     <form className={style.form} onSubmit={handleSubmit(submit)}>
-      <label>
-        {typeOfForm.slice(0, 1).toUpperCase() +
-          typeOfForm.slice(1, typeOfForm.length)}
-      </label>
+      <div className="flex justify-between  items-end">
+        <label>
+          {typeOfForm.slice(0, 1).toUpperCase() +
+            typeOfForm.slice(1, typeOfForm.length)}
+        </label>
+        <span className="text-sm text-zinc-300 hover:text-zinc-400 transition-colors duration-300">
+          <Link href={`/auth/${typeOfForm === "login" ? "register" : "login"}`}>
+            {typeOfForm === "login" ? "Register" : "Login"}
+          </Link>
+        </span>
+      </div>
       <div>
         <input
           type="text"
