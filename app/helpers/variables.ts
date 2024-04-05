@@ -1,1 +1,1 @@
-export const urlBase: string = "http://localhost:3000/code/";
+export const urlBase: string = `${process.env.NEXT_PUBLIC_URL}/code/`;
