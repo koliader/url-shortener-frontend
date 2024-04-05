@@ -57,12 +57,12 @@ const HomeForm: FC = () => {
     values: IHomeFormValues
   ) => {
     try {
+      setIsDisabled(true);
       if (tokenDto.token) {
         await mutation.mutateAsync(values);
       } else {
         await guestMutation.mutateAsync(values);
       }
-      setIsDisabled(true);
     } catch (error: any) {
       informer.informsError(error);
     } finally {
