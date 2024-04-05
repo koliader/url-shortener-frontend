@@ -1,16 +1,9 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import style from "./style.module.scss";
 import NavBar from "../../shared/NavBar/NavBar";
 import HomeForm from "./HomeForm/HomeForm";
-import { NextRouter, useRouter } from "next/router";
 
 const Home: FC = () => {
-  const router: NextRouter = useRouter();
-  useEffect(() => {
-    if (router.isReady) {
-      console.log(router.query.code);
-    }
-  }, [router.isReady]);
   return (
     <>
       <NavBar />

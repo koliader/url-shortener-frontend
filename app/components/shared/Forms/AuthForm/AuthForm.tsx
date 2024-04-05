@@ -31,9 +31,8 @@ const AuthForm: FC<IAuthFormProps> = ({ typeOfForm }) => {
   ) => {
     try {
       const { data } = await axios.post(`/auth/${typeOfForm}`, {
-        email: values.email,
         password: values.password,
-        username: typeOfForm === "login" ? "" : values.username,
+        username: values.username,
       });
       setIsDisabled(true);
       setCookie(null, "token", data.token, {
@@ -68,40 +67,20 @@ const AuthForm: FC<IAuthFormProps> = ({ typeOfForm }) => {
           </span>
         </div>
         <div>
-          <input
-            type="text"
-            className={style.input}
-            placeholder="Email"
-            {...register("email", {
-              required: "Email is required",
-              pattern: {
-                message: "Please enter valid email!",
-                value:
-                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              },
-            })}
-          />
-          {errors.email && (
-            <span className="text-red-500">{errors.email.message}</span>
+          <div className="flex">
+            <input
+              type="text"
+              className={style.input}
+              placeholder="Username"
+              {...register("username", {
+                required: "Username is required",
+              })}
+            />
+          </div>
+          {errors.username && (
+            <span className="text-red-500">{errors.username.message}</span>
           )}
         </div>
-        {typeOfForm === "register" && (
-          <div>
-            <div className="flex">
-              <input
-                type="text"
-                className={style.input}
-                placeholder="Username"
-                {...register("username", {
-                  required: "Username is required",
-                })}
-              />
-            </div>
-            {errors.username && (
-              <span className="text-red-500">{errors.username.message}</span>
-            )}
-          </div>
-        )}
         <div>
           <div className="flex">
             <input
