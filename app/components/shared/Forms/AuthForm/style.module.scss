@@ -1,8 +1,11 @@
-.form {
+.main {
   margin-left: auto;
   margin-right: auto;
   width: 20em;
   @apply mt-36 flex flex-col gap-2;
+}
+.form {
+  @apply flex flex-col gap-2;
   .input {
     @apply border-1 pl-3 py-2  rounded-sm w-full  hover:border-primary transition-colors duration-300 hover:border-opacity-80 focus:outline-none focus:border-primary;
   }
@@ -15,10 +18,17 @@
       @apply bg-opacity-70;
     }
   }
+
   .eye {
     @apply bg-white w-2/12 border-zinc-200 rounded-r-sm flex justify-center items-center text-zinc-400 cursor-pointer transition-colors duration-300;
     &:hover {
       background-color: #f7f7f7;
     }
+  }
+}
+.githubButton {
+  @apply bg-black text-white py-2 rounded-sm  transition-colors duration-300 flex justify-center items-center gap-2;
+  &:hover {
+    @apply bg-opacity-85;
   }
 }
