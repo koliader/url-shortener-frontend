@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ErrorPage from "next/error";
 import { IUrl } from "@/app/assets/types/url";
+import UrlNotFound from "@/app/components/ui/UrlNotFound/UrlNotFound";
 
 export interface IUrlPageServerSideProps {
   url: string | null;
@@ -18,7 +19,7 @@ const UrlPage: NextPage<IUrlPageServerSideProps> = ({ url, notFound }) => {
       router.push(url!);
     }
   }, [router.isReady]);
-  return <>{notFound && <ErrorPage statusCode={404} />}</>;
+  return <>{notFound && <UrlNotFound />}</>;
 };
 export default UrlPage;
 export const getServerSideProps: GetServerSideProps<

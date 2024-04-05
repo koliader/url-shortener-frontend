@@ -1,5 +1,5 @@
 export interface IDecodedToken {
-  email: string;
+  username: string;
   issuedAt: number;
   expiredAt: number;
 }
