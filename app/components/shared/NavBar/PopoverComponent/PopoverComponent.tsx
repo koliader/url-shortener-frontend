@@ -75,7 +75,7 @@ const PopoverComponent: FC = () => {
         {data?.data && <UserAvatar user={data?.data} />}
 
         <div className="flex items-center hover:text-primary text-opacity-95 transition-colors duration-300">
-          <p className="font-bold text-lg">{data?.data.username}</p>
+          <p className={style.popoverOpen}>{data?.data.username}</p>
           <IoMdArrowDropdown size={20} />
         </div>
       </div>

@@ -22,30 +22,25 @@ const Urls: FC = () => {
     <>
       <NavBar />
       <div className={style.main}>
-        <h2 className="text-2xl font-semibold mb-4">My URLs</h2>
+        <h2 className={style.heading}>My URLs</h2>
         <div className={style.urls}>
           {isLoading ? (
             "Loading..."
           ) : data?.data?.length ? (
-            <div className="border rounded-sm">
-              <table className={style.roundedTable}>
-                <thead>
-                  <tr>
-                    <th className="border-b-1 px-4 py-2 text-left">URL</th>
-                    <th className="border-b-1 px-4 py-2 text-left">
-                      Shorted URL
-                    </th>
-                    <th className="border-b-1 px-4 py-2 text-left">User</th>
-                    <th className="border-b-1 px-4 py-2 text-left">Clicks</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.data.map((url: IUrl) => (
-                    <UrlCard key={url.code} url={url} />
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <table className={style.roundedTable}>
+              <thead>
+                <tr>
+                  <th className={style.tableHead}>URL</th>
+                  <th className={style.tableHead}>Shorted URL</th>
+                  <th className={style.tableHead}>Clicks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.data.map((url: IUrl) => (
+                  <UrlCard key={url.code} url={url} />
+                ))}
+              </tbody>
+            </table>
           ) : (
             <span>You have no active urls</span>
           )}

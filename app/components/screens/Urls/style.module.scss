@@ -1,9 +1,27 @@
 .main {
   @apply mt-3 mx-4;
+  .heading {
+    @apply text-2xl font-semibold mb-4;
+  }
   .urls {
     @apply mt-2;
   }
+  .roundedTable {
+    @apply w-full border;
+    .tableHead {
+      @apply border-b-1 px-4 py-2 text-left;
+    }
+  }
 }
-.roundedTable {
-  @apply w-full;
+@media (max-width: 640px) {
+  .main {
+    .heading {
+      @apply text-xl;
+    }
+    .roundedTable {
+      .tableHead {
+        font-size: 15px;
+      }
+    }
+  }
 }
