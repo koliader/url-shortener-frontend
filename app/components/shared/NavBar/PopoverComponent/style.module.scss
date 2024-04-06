@@ -7,6 +7,9 @@
 .popoverOpen {
   @apply font-bold text-lg;
 }
+.popoverOpen {
+  @apply font-bold text-lg;
+}
 .popover {
   @apply w-32 h-20 bg-white absolute mt-11 border-1 flex items-center flex-col rounded-sm transition-all duration-300 pt-2 gap-1;
   &::after {
