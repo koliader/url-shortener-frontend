@@ -6,7 +6,7 @@ import axios from "@/app/helpers/axios";
 import { ITokenDto } from "@/app/assets/types/token";
 import { TokenManager } from "@/app/helpers/classes/TokenManager";
 import { IUrl } from "@/app/assets/types/url";
-import UrlCard from "../../shared/Cards/UrlCard/UrlCard";
+import UrlCard from "../../ui/Cards/UrlCard/UrlCard";
 
 const Urls: FC = () => {
   const tokenDto: ITokenDto = new TokenManager().getTokenData();

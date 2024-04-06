@@ -10,10 +10,7 @@ const UrlNotFound: FC = () => {
         <FaLinkSlash size={40} />
         <h1 className="text-4xl font-bold">Url not found</h1>
       </div>
-      <Link
-        href={"/"}
-        className="text-2xl hover:text-primary  transition-colors duration-300 hover:underline"
-      >
+      <Link href={"/"} className="text-2xl text-primary underline">
         Home page
       </Link>
     </div>

@@ -11,7 +11,7 @@ const Home: FC = () => {
         <h1 className={style.title}>
           It&apos;s the most modern url shortener!
         </h1>
-        <p className="text-lg">Type url to short it!</p>
+        <p className={style.sub}>Type url to short it!</p>
         <HomeForm />
       </div>
     </>

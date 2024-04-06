@@ -1,6 +1,22 @@
 .main {
   @apply flex mt-3 flex-col items-center;
+}
+.title {
+  @apply text-2xl font-semibold;
+}
+.sub {
+  @apply text-lg;
+}
+@media (max-width: 640px) {
   .title {
-    @apply text-2xl font-semibold;
+    @apply text-xl;
+  }
+  .sub {
+    font-size: 15px;
+  }
+}
+@media (max-width: 470px) {
+  .title {
+    @apply w-72 text-center;
   }
 }

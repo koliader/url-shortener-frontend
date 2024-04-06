@@ -30,7 +30,6 @@ export const getServerSideProps: GetServerSideProps<IToken> = async (ctx) => {
     const tokenDto = new TokenManager().getTokenData();
     if (ctx.query.code && !tokenDto.token) {
       const res = await axios.get(`/auth/github/${ctx.query.code}`);
-      console.log(res.data.token);
       return {
         props: { token: res.data.token },
       };
