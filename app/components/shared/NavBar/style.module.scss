@@ -3,5 +3,29 @@
   height: 75px;
   .logo {
     @apply flex gap-1 items-center text-2xl font-extrabold cursor-pointer transition-colors duration-300 hover:text-primary;
+    .icon {
+      @apply text-3xl;
+    }
+  }
+}
+@media (max-width: 640px) {
+  .main {
+    .logo {
+      font-size: 20px;
+      .icon {
+        @apply text-2xl;
+      }
+    }
+  }
+}
+@media (max-width: 470px) {
+  .main {
+    @apply px-3;
+    .logo {
+      font-size: 18px;
+      .icon {
+        font-size: 22px;
+      }
+    }
   }
 }
