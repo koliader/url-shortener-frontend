@@ -30,3 +30,16 @@
     }
   }
 }
+@media (max-width: 380px) {
+  .auth {
+    @apply gap-2;
+    .login {
+      @apply px-3;
+      font-size: 12px;
+    }
+    .register {
+      @apply px-3;
+      font-size: 12px;
+    }
+  }
+}

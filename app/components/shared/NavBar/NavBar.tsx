@@ -1,16 +1,12 @@
-import { FC, Fragment, useEffect } from "react";
+import { FC, useEffect } from "react";
 import style from "./style.module.scss";
 import { FaLink } from "react-icons/fa";
 import AuthButtons from "./AuthButtons/AuthButtons";
 import { TokenManager } from "@/app/helpers/classes/TokenManager";
-import { Menu, notification } from "antd";
 import { useRouter } from "next/router";
 import { NextRouter } from "next/router";
 import { Informer } from "@/app/helpers/classes/Informer";
-import { MenuItem } from "@mui/material";
-import { BiPlus, BiSolidDownArrow } from "react-icons/bi";
 import PopoverComponent from "./PopoverComponent/PopoverComponent";
-import jwt from "jsonwebtoken";
 
 const NavBar: FC = () => {
   const router: NextRouter = useRouter();
@@ -26,12 +22,6 @@ const NavBar: FC = () => {
       }
     }
   }, []);
-  const logoClick = () => {
-    if (router.asPath === "/") {
-      router.reload();
-    } else {
-    }
-  };
   return (
     <nav className={style.main}>
       <div className={style.logo} onClick={() => router.push("/")}>
