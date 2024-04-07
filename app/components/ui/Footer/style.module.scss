@@ -1,0 +1,18 @@
+.footer {
+  @apply fixed bottom-0 w-full  py-3 text-center flex flex-col items-center gap-1;
+  .icon {
+    @apply text-xl hover:scale-110 transition-transform duration-300 ease-in-out active:text-primary;
+  }
+}
+@media (max-width: 470px) {
+  .footer {
+    font-size: 15px;
+  }
+}
+@media (max-width: 400px) {
+  .footer {
+    .footerText {
+      @apply w-72;
+    }
+  }
+}

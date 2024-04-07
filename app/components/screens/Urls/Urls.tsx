@@ -7,6 +7,7 @@ import { ITokenDto } from "@/app/assets/types/token";
 import { TokenManager } from "@/app/helpers/classes/TokenManager";
 import { IUrl } from "@/app/assets/types/url";
 import UrlCard from "../../ui/Cards/UrlCard/UrlCard";
+import Layout from "../../shared/Layouts/Layout/Layout";
 
 const Urls: FC = () => {
   const tokenDto: ITokenDto = new TokenManager().getTokenData();
@@ -20,32 +21,33 @@ const Urls: FC = () => {
 
   return (
     <>
-      <NavBar />
-      <div className={style.main}>
-        <h2 className={style.heading}>My URLs</h2>
-        <div className={style.urls}>
-          {isLoading ? (
-            "Loading..."
-          ) : data?.data?.length ? (
-            <table className={style.roundedTable}>
-              <thead>
-                <tr>
-                  <th className={style.tableHead}>URL</th>
-                  <th className={style.tableHead}>Shorted URL</th>
-                  <th className={style.tableHead}>Clicks</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.data.map((url: IUrl) => (
-                  <UrlCard key={url.code} url={url} />
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <span>You have no active urls</span>
-          )}
+      <Layout>
+        <div className={style.main}>
+          <h2 className={style.heading}>My URLs</h2>
+          <div className={style.urls}>
+            {isLoading ? (
+              "Loading..."
+            ) : data?.data?.length ? (
+              <table className={style.roundedTable}>
+                <thead>
+                  <tr>
+                    <th className={style.tableHead}>URL</th>
+                    <th className={style.tableHead}>Shorted URL</th>
+                    <th className={style.tableHead}>Clicks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.data.map((url: IUrl) => (
+                    <UrlCard key={url.code} url={url} />
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <span>You have no active urls</span>
+            )}
+          </div>
         </div>
-      </div>
+      </Layout>
     </>
   );
 };
