@@ -22,10 +22,6 @@ A simple URL shortener application built with Next.js.
   - Access your profile to view the list of URLs you've shortened and the total clicks for each URL.
   - You can also change the original URL associated with your shortened URLs from your profile.
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any new features, bugs, or improvements.
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
