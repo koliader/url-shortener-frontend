@@ -11,7 +11,7 @@ const Footer: FC = () => {
         <SiGithub className={style.icon} />
       </Link>
       <span className={style.footerText}>
-        © 2024 koliadervyanko. All right reserved
+        © 2024 koliader. All right reserved
       </span>
     </footer>
   );
