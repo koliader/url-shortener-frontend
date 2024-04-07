@@ -7,3 +7,26 @@
     @apply px-5 py-1 rounded-sm  transition-colors duration-300 bg-primary text-white hover:bg-opacity-90;
   }
 }
+@media (max-width: 640px) {
+  .auth {
+    .login {
+      font-size: 14px;
+    }
+    .register {
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 470px) {
+  .auth {
+    @apply gap-2;
+    .login {
+      @apply px-4;
+      font-size: 13px;
+    }
+    .register {
+      @apply px-4;
+      font-size: 13px;
+    }
+  }
+}

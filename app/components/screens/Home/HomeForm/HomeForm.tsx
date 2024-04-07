@@ -117,12 +117,12 @@ const HomeForm: FC = () => {
           </Link>
           <div className="flex gap-1">
             <FaRegCopy
-              size={"1.5rem"}
+              // size={"1.5rem"}
               className={style.copyIcon}
               onClick={copyUrl}
             />
             <MdOutlineCancel
-              size={"1.5em"}
+              // size={"1.5em"}
               className={style.copyIcon}
               onClick={clear}
             />

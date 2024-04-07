@@ -30,7 +30,6 @@ export const getServerSideProps: GetServerSideProps<
     await axios.put(`/urls/${ctx.params!.code}`);
     return { props: { url: url.data.url, notFound: false } };
   } catch (error: any) {
-    console.log(error.response.status);
     if (error.response.status === 404) {
       return { props: { url: null, notFound: true } };
     }

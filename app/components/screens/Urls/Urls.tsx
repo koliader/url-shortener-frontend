@@ -7,6 +7,7 @@ import { ITokenDto } from "@/app/assets/types/token";
 import { TokenManager } from "@/app/helpers/classes/TokenManager";
 import { IUrl } from "@/app/assets/types/url";
 import UrlCard from "../../ui/Cards/UrlCard/UrlCard";
+import Layout from "../../shared/Layouts/Layout/Layout";
 
 const Urls: FC = () => {
   const tokenDto: ITokenDto = new TokenManager().getTokenData();
@@ -20,23 +21,19 @@ const Urls: FC = () => {
 
   return (
     <>
-      <NavBar />
-      <div className={style.main}>
-        <h2 className="text-2xl font-semibold mb-4">My URLs</h2>
-        <div className={style.urls}>
-          {isLoading ? (
-            "Loading..."
-          ) : data?.data?.length ? (
-            <div className="border rounded-sm">
+      <Layout>
+        <div className={style.main}>
+          <h2 className={style.heading}>My URLs</h2>
+          <div className={style.urls}>
+            {isLoading ? (
+              "Loading..."
+            ) : data?.data?.length ? (
               <table className={style.roundedTable}>
                 <thead>
                   <tr>
-                    <th className="border-b-1 px-4 py-2 text-left">URL</th>
-                    <th className="border-b-1 px-4 py-2 text-left">
-                      Shorted URL
-                    </th>
-                    <th className="border-b-1 px-4 py-2 text-left">User</th>
-                    <th className="border-b-1 px-4 py-2 text-left">Clicks</th>
+                    <th className={style.tableHead}>URL</th>
+                    <th className={style.tableHead}>Shorted URL</th>
+                    <th className={style.tableHead}>Clicks</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -45,12 +42,12 @@ const Urls: FC = () => {
                   ))}
                 </tbody>
               </table>
-            </div>
-          ) : (
-            <span>You have no active urls</span>
-          )}
+            ) : (
+              <span>You have no active urls</span>
+            )}
+          </div>
         </div>
-      </div>
+      </Layout>
     </>
   );
 };

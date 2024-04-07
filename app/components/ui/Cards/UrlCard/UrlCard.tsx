@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { IUrl } from "@/app/assets/types/url";
 import Link from "next/link";
+import style from "./style.module.scss";
 
 const UrlCard: FC<{ url: IUrl }> = ({ url }) => {
   const redirectUrl = window.location.href.slice(
@@ -9,7 +10,7 @@ const UrlCard: FC<{ url: IUrl }> = ({ url }) => {
   );
   return (
     <tr>
-      <td className=" px-4 py-2 text-wrap" title={url.url}>
+      <td className={style.wrapped} title={url.url}>
         <Link
           href={url.url}
           className="text-primary hover:underline"
@@ -18,7 +19,7 @@ const UrlCard: FC<{ url: IUrl }> = ({ url }) => {
           {url.url}
         </Link>
       </td>
-      <td className=" px-4 py-2">
+      <td className={style.wrapped}>
         <Link
           href={`${redirectUrl}/code/${url.code}`}
           className="text-primary hover:underline"
@@ -27,8 +28,7 @@ const UrlCard: FC<{ url: IUrl }> = ({ url }) => {
           {`${redirectUrl}/code/${url.code}`}{" "}
         </Link>
       </td>
-      <td className=" px-4 py-2">{url.user ? url.user.username : "No user"}</td>
-      <td className="px-4 py-2">{url.clicks}</td>
+      <td className={style.clicks}>{url.clicks}</td>
     </tr>
   );
 };

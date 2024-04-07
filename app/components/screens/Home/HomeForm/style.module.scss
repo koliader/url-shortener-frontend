@@ -13,6 +13,22 @@
     }
   }
   .copyIcon {
-    @apply hover:text-primary cursor-pointer transition-colors duration-300;
+    @apply hover:text-primary cursor-pointer transition-colors duration-300 text-2xl;
   }
+}
+@media (max-width: 640px) {
+  .form {
+    @apply w-80;
+    .input {
+      @apply w-80 text-sm;
+    }
+    .submitButton {
+      @apply text-sm;
+    }
+  }
+  .copyIcon {
+    @apply text-xl;
+  }
+}
+@media (max-width: 470px) {
 }

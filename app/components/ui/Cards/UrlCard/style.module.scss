@@ -1,0 +1,23 @@
+.wrapped {
+  @apply px-4 py-2;
+  word-break: break-all;
+}
+.clicks {
+  @apply px-4 py-2;
+}
+@media (max-width: 640px) {
+  .wrapped {
+    font-size: 15px;
+  }
+  .clicks {
+    font-size: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .wrapped {
+    font-size: 13px;
+  }
+  .clicks {
+    font-size: 13px;
+  }
+}

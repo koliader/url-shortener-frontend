@@ -35,7 +35,7 @@ const NavBar: FC = () => {
   return (
     <nav className={style.main}>
       <div className={style.logo} onClick={() => router.push("/")}>
-        <FaLink size={"1.8rem"} />
+        <FaLink className={style.icon} />
         <span className={style.logoText}>Url shortener</span>
       </div>
       {tokenDto.token ? <PopoverComponent /> : <AuthButtons />}
