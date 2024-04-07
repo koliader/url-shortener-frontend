@@ -12,7 +12,6 @@ import { NextRouter } from "next/router";
 import { FaRegCopy } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
 import { IUrl } from "@/app/assets/types/url";
-import { urlBase } from "@/app/helpers/variables";
 import Link from "next/link";
 
 const HomeForm: FC = () => {
@@ -35,7 +34,7 @@ const HomeForm: FC = () => {
       await axios.post<IUrl>("/urls/guest", { url: values.url }),
     {
       onSuccess: (data) => {
-        setUrl(`${urlBase}${data.data.code}`);
+        setUrl(`${window.location.href}code/${data.data.code}`);
       },
     }
   );
@@ -51,7 +50,7 @@ const HomeForm: FC = () => {
       ),
     {
       onSuccess: (data) => {
-        setUrl(`${urlBase}${data.data.code}`);
+        setUrl(`${window.location.href}code/${data.data.code}`);
       },
     }
   );

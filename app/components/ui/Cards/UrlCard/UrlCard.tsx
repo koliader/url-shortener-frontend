@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { IUrl } from "@/app/assets/types/url";
 import Link from "next/link";
-import { urlBase } from "@/app/helpers/variables";
 import style from "./style.module.scss";
 
 const UrlCard: FC<{ url: IUrl }> = ({ url }) => {
@@ -18,11 +17,11 @@ const UrlCard: FC<{ url: IUrl }> = ({ url }) => {
       </td>
       <td className={style.wrapped}>
         <Link
-          href={`${urlBase}${url.code}`}
+          href={`${window.location.href}code/${url.code}`}
           className="text-primary hover:underline"
           target="_blank"
         >
-          {`${urlBase}${url.code}`}{" "}
+          {`${window.location.href}code/${url.code}`}{" "}
         </Link>
       </td>
       <td className={style.clicks}>{url.clicks}</td>
