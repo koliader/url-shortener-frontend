@@ -4,7 +4,6 @@ import { AxiosError } from "axios";
 
 export class Informer {
   informsError(err: AxiosError<IErrorField>) {
-    console.log(err);
     notification.error({
       message: "Error",
       description: err.response?.data?.error,

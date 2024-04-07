@@ -1,5 +1,4 @@
 import { FC } from "react";
-import NavBar from "../../shared/NavBar/NavBar";
 import style from "./style.module.scss";
 import { useQuery } from "react-query";
 import axios from "@/app/helpers/axios";
