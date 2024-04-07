@@ -4,6 +4,10 @@ import Link from "next/link";
 import style from "./style.module.scss";
 
 const UrlCard: FC<{ url: IUrl }> = ({ url }) => {
+  const redirectUrl = window.location.href.slice(
+    0,
+    window.location.href.length - 5
+  );
   return (
     <tr>
       <td className={style.wrapped} title={url.url}>
@@ -17,11 +21,11 @@ const UrlCard: FC<{ url: IUrl }> = ({ url }) => {
       </td>
       <td className={style.wrapped}>
         <Link
-          href={`${window.location.href}code/${url.code}`}
+          href={`${redirectUrl}/code/${url.code}`}
           className="text-primary hover:underline"
           target="_blank"
         >
-          {`${window.location.href}code/${url.code}`}{" "}
+          {`${redirectUrl}/code/${url.code}`}{" "}
         </Link>
       </td>
       <td className={style.clicks}>{url.clicks}</td>

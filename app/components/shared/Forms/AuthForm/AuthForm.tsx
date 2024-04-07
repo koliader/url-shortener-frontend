@@ -30,11 +30,11 @@ const AuthForm: FC<IAuthFormProps> = ({ typeOfForm }) => {
     values: ILoginFormValues
   ) => {
     try {
+      setIsDisabled(true);
       const { data } = await axios.post(`/auth/${typeOfForm}`, {
         password: values.password,
         username: values.username,
       });
-      setIsDisabled(true);
       setCookie(null, "token", data.token, {
         path: "/",
       });

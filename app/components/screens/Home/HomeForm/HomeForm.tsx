@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from "react";
-import { IHomeFormValues } from "./types";
+import { FC, useState } from "react";
+import { IHomeFormProps, IHomeFormValues } from "./types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import style from "./style.module.scss";
 import { TokenManager } from "@/app/helpers/classes/TokenManager";
@@ -7,8 +7,6 @@ import axios from "@/app/helpers/axios";
 import { CircularProgress } from "@mui/material";
 import { Informer } from "@/app/helpers/classes/Informer";
 import { useMutation } from "react-query";
-import { useRouter } from "next/router";
-import { NextRouter } from "next/router";
 import { FaRegCopy } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
 import { IUrl } from "@/app/assets/types/url";
@@ -59,12 +57,12 @@ const HomeForm: FC = () => {
     values: IHomeFormValues
   ) => {
     try {
+      setIsDisabled(true);
       if (tokenDto.token) {
         await mutation.mutateAsync(values);
       } else {
         await guestMutation.mutateAsync(values);
       }
-      setIsDisabled(true);
     } catch (error: any) {
       informer.informsError(error);
     } finally {
