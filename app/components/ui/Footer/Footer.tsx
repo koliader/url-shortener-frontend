@@ -7,7 +7,7 @@ const Footer: FC = () => {
   return (
     <footer className={style.footer}>
       <hr className="w-2/3 pt-3" />
-      <Link href="https://github.com/koliadervyanko" target="_blank">
+      <Link href="https://github.com/koliader" target="_blank">
         <SiGithub className={style.icon} />
       </Link>
       <span className={style.footerText}>
