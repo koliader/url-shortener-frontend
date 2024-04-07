@@ -28,7 +28,6 @@ export interface IToken {
 export const getServerSideProps: GetServerSideProps<IToken> = async (ctx) => {
   try {
     const fullURL = ctx.req.headers.host! + ctx.req.url;
-    console.log("Full URL:", fullURL);
     const tokenDto = new TokenManager().getTokenData();
     if (ctx.query.code && !tokenDto.token) {
       const res = await axios.get(`/auth/github/${ctx.query.code}`);

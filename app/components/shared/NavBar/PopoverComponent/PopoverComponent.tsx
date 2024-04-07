@@ -21,7 +21,7 @@ const PopoverComponent: FC = () => {
   const tokenManager = new TokenManager();
   const tokenDto: ITokenDto = tokenManager.getTokenData();
   const informer = new Informer();
-  const { data } = useQuery(
+  const { data, isLoading } = useQuery(
     "get user for navbar",
     async () =>
       await axios.get<IUser>(`/users/${tokenDto.decodedToken?.username}`, {
@@ -67,29 +67,35 @@ const PopoverComponent: FC = () => {
 
   return (
     <div className="flex justify-center">
-      <div
-        ref={toggleRef}
-        className="flex items-center gap-2 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {data?.data && <UserAvatar user={data?.data} />}
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <>
+          <div
+            ref={toggleRef}
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {data?.data && <UserAvatar user={data?.data} />}
 
-        <div className="flex items-center hover:text-primary text-opacity-95 transition-colors duration-300">
-          <p className={style.popoverOpen}>{data?.data.username}</p>
-          <IoMdArrowDropdown size={20} />
-        </div>
-      </div>
-      <div
-        ref={popoverRef}
-        className={`${style.popover} ${!isOpen && style.popoverHidden}`}
-      >
-        <Link href={"/urls"} className={style.link}>
-          My URLs
-        </Link>
-        <button className={style.logOutButton} onClick={logOut}>
-          Log out
-        </button>
-      </div>
+            <div className="flex items-center hover:text-primary text-opacity-95 transition-colors duration-300">
+              <p className={style.popoverOpen}>{data?.data.username}</p>
+              <IoMdArrowDropdown size={20} />
+            </div>
+          </div>
+          <div
+            ref={popoverRef}
+            className={`${style.popover} ${!isOpen && style.popoverHidden}`}
+          >
+            <Link href={"/urls"} className={style.link}>
+              My URLs
+            </Link>
+            <button className={style.logOutButton} onClick={logOut}>
+              Log out
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
